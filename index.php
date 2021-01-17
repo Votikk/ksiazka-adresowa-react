@@ -15,57 +15,53 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom -->
     <script src="custom.js"></script>
-    <link rel="stylesheet" src="custom.css">
+    <link rel="stylesheet" type="text/css" href="custom.css"/>
   </head>
 
   <body>
-    
-    <section class="navigation">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="single">
-              <div class="title">
-                Książka adresowa
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="single">
-              <div class="options">
-                <div class="single">
-                  Lista
-                </div>
-                <div class="single">
-                  Dodaj
-                </div>
-              </div>
-            </div>
+    <div class="container navigation">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="title">
+            Książka adresowa
           </div>
         </div>
-      </div>
-    </section>
-    <section class="contacts">
-      <div class="container">
-        <div class="row">
-          <?php for ($i = 0; $i < 10; $i++) : ?>
-            <div class="col-md-3">
+        <div class="col-md-6">
+          <div class="single">
+            <div class="options">
               <div class="single">
-                <div class="avatar">
-                  Avatar
-                </div>
-                <div class="title">
-                  Monika pietrzałek
-                </div>
-                <div class="status">
-                  Online
-                </div>
+                Lista
+              </div>
+              <div class="single">
+                Dodaj
               </div>
             </div>
-          <?php endfor; ?>
+          </div>
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+    <div class="container contacts">
+      <div class="row">
+        <?php for ($i = 0; $i < 10; $i++) : ?>
+          <div class="col-md-3">
+            <div class="single">
+              <div class="avatar" style="background-image: url('img/avatar.webp')">
+
+              </div>
+              <div class="title">
+                Monika pietrzałek
+              </div>
+              <div class="tel">
+                612 612 612
+              </div>
+              <div class="email">
+                mpietrzalek@example.com
+              </div>
+            </div>
+          </div>
+        <?php endfor; ?>
+      </div>
+    </div>
+</body>
 
 </html>
