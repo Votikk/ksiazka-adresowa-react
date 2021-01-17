@@ -26,6 +26,10 @@ body {
   background-color: #bababa;
 }
 
+.navigation .options .single:not(:last-child) {
+    margin-right: 10px;
+}
+
 .navigation .options .single:hover {
   background-color: #adadad;
   cursor: pointer;

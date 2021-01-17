@@ -20,14 +20,7 @@ function AppHeader() {
               </div>
               <div className="col-md-6">
                 <div className="single">
-                  <div className="options">
-                    <div className="single">
-                      Lista
-                    </div>
-                    <div className="single">
-                      Dodaj
-                    </div>
-                  </div>
+                  <HeaderOptions />
                 </div>
               </div>
             </div>
@@ -48,8 +41,44 @@ function ContactsList() {
               tel="22 222 222"
               email="mosnowska@example.com"
               />
+            <ContactItem 
+              name="Monika Pietrzałek"
+              tel="111 111 111"
+              email="mpietrzalek@example.com"
+              />
+            <ContactItem 
+              name="Magda Osnowska"
+              tel="22 222 222"
+              email="mosnowska@example.com"
+              />
+            <ContactItem 
+              name="Monika Pietrzałek"
+              tel="111 111 111"
+              email="mpietrzalek@example.com"
+              />
+            <ContactItem 
+              name="Magda Osnowska"
+              tel="22 222 222"
+              email="mosnowska@example.com"
+              />
           </div>
           );
+}
+
+function HeaderOptions() {
+  return (
+          <div className="options">
+            <OptionsItem 
+              title="Dodaj"
+              />
+            <OptionsItem 
+              title="Opcja 2"
+              />
+            <OptionsItem 
+              title="Opcja 3"
+              />
+          </div>
+          )
 }
 
 class ContactItem extends React.Component {
@@ -57,7 +86,7 @@ class ContactItem extends React.Component {
     const {name, tel, email} = this.props;
     return (
             <div className="col-md-3">
-              <div className="single">
+              <div className="single" onClick={() => alert('click!')}>
                 <div className="avatar">
             
                 </div>
@@ -71,6 +100,17 @@ class ContactItem extends React.Component {
                   {email}
                 </div>
               </div>
+            </div>
+            );
+  }
+}
+
+class OptionsItem extends React.Component {
+  render() {
+    const {title} = this.props;
+    return (
+            <div className="single">
+              {title}
             </div>
             );
   }
