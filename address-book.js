@@ -52,25 +52,28 @@ function ContactsList() {
           );
 }
 
-function ContactItem({ name, tel, email}) {
-  return (
-          <div className="col-md-3">
-            <div className="single">
-              <div className="avatar">
-          
-              </div>
-              <div className="title">
-                {name}
-              </div>
-              <div className="tel">
-                {tel}
-              </div>
-              <div className="email">
-                {email}
+class ContactItem extends React.Component {
+  render() {
+    const {name, tel, email} = this.props;
+    return (
+            <div className="col-md-3">
+              <div className="single">
+                <div className="avatar">
+            
+                </div>
+                <div className="title">
+                  {name}
+                </div>
+                <div className="tel">
+                  {tel}
+                </div>
+                <div className="email">
+                  {email}
+                </div>
               </div>
             </div>
-          </div>
-          );
+            );
+  }
 }
 
 ReactDOM.render(<App />,
