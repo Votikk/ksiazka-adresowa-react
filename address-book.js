@@ -38,6 +38,7 @@ function ContactsList() {
               city="Gdańsk"
               postal="80-010"
               street="ul. Kościuszki"
+              likes="1"
               />
             <PersonalProjects
               />
@@ -46,36 +47,42 @@ function ContactsList() {
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
+              likes="2"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
               avatar="img/avatar.webp"
+              likes="1"
               />
             <ContactItem 
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
+              likes="44"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
               avatar="img/avatar.webp"
+              likes="453"
               />
             <ContactItem 
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
+              likes="0"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
               avatar="img/avatar.webp"
+              likes="88"
               />
           </div>
           );
@@ -170,6 +177,12 @@ class ProjectItem extends React.Component {
 }
 
 class ContactItem extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {counter: this.props.likes};
+  }
+  
   render() {
     const {name, tel, email, avatar} = this.props;
     return (
@@ -188,11 +201,11 @@ class ContactItem extends React.Component {
                   {email}
                 </div>
                 <div className="counter">
-                  <div className="add-like">
+                  <div className="add-like" onClick={this.increment.bind(this)}>
                     <span>Polub! </span><img className="like-btn" src="img/like.jpg"/>
                   </div>
                   <div className="total-likes">
-                    Łącznie 0 polubień
+                  Łącznie <output>{this.state.counter}</output> polubień
                   </div>
                 </div>
               </div>
@@ -203,6 +216,14 @@ class ContactItem extends React.Component {
   contactOnClickHandler() {
     //alert('Kliknięto!');
   }
+  
+  increment() {
+    var likes = parseInt(this.state.counter);
+    this.setState({
+      counter: likes + 1
+    })
+  }
+
 }
 
 class OptionsItem extends React.Component {
