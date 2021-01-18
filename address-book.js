@@ -111,13 +111,18 @@ function PersonalProjects() {
             <div class="personal-projects">
               <ProjectItem 
                 title="google.com"
-                frontend=""
-                backend=""
+                frontend="1"
+                backend="0"
                 />
               <ProjectItem 
                 title="wp.pl"
-                frontend=""
-                backend=""
+                frontend="0"
+                backend="1"
+                />
+              <ProjectItem 
+                title="hypeup.org"
+                frontend="1"
+                backend="1"
                 />
             </div>
           </div>
@@ -147,8 +152,12 @@ class ProjectItem extends React.Component {
     return (
             <div class="project">
               <span class="title">{title}</span>
-              <span class="frontend-icon">FRONT-END</span>
-              <span class="backend-icon">BACKEND-END</span>
+              {frontend == 1 &&
+                          <span class="frontend-icon">FRONT-END</span>
+              }
+              {backend == 1 &&
+                          <span class="backend-icon">BACKEND-END</span>
+              }
             </div>
             );
   }
