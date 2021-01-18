@@ -180,7 +180,6 @@ class ContactItem extends React.Component {
                 </div>
                 <div className="title">
                   {name}
-                  {avatar}
                 </div>
                 <div className="tel">
                   {tel}
