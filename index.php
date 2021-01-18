@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom -->
     <script type="text/babel" src="address-book.js"></script>
+    <script src="custom.js"></script>
     <link rel="stylesheet" href="custom.css"/>
   </head>
 
@@ -23,7 +24,7 @@
     <div id="address-book"></div>
 
     <!-- FRONT -->
-    
+
     <div class="container navigation">
       <div class="row">
         <div class="col-md-6">
@@ -47,6 +48,60 @@
     </div>
     <div class="container contacts">
       <div class="row">
+        <div class="col-md-6">
+          <div class="personal-info">
+            <div class="avatar">
+
+            </div>
+            <div class="title">
+              Monika pietrzałek
+            </div>
+            <div class="tel">
+              612 612 612
+            </div>
+            <div class="email">
+              mpietrzalek@example.com
+            </div>
+            <div class="City">
+              Warsaw
+            </div>
+            <div class="Postal">
+              00-030
+            </div>
+            <div class="Street">
+              ul. Kopernika
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="personal-projects">
+            <div class="project">
+              <span class="title">Google.com</span>
+              <span class="backend-icon">BACK-END</span>
+              <span class="frontend-icon">FRONT-END</span>
+            </div>
+            <div class="project">
+              <span class="title">wp.pl</span>
+              <span class="frontend-icon">FRONT-END</span>
+            </div>
+            <div class="project">
+              <span class="title">allegro.pl</span>
+              <span class="frontend-icon">FRONT-END</span>
+            </div>
+            <div class="project">
+              <span class="title">youtube.com</span>
+              <span class="backend-icon">BACK-END</span>
+            </div>
+            <div class="project">
+              <span class="title">greencities.org</span>
+              <span class="frontend-icon">FRONT-END</span>
+            </div>
+            <div class="project">
+              <span class="title">dume.com</span>
+              <span class="backend-icon">BACK-END</span>
+            </div>
+          </div>
+        </div>
         <?php for ($i = 0; $i < 10; $i++) : ?>
           <div class="col-md-3">
             <div class="single">
@@ -69,5 +124,5 @@
     </div>
 
   </body>
-  
+
 </html>
