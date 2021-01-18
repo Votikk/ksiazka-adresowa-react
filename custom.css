@@ -61,6 +61,7 @@ body {
 
 .contacts .single .email {
   word-break: break-all;
+  margin-bottom: 10px;
 }
 
 
@@ -96,18 +97,37 @@ body {
 }
 
 .contacts .single .counter:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
-.contacts .single .counter .add-like span {
-  vertical-align: middle;
+.contacts .single .counter {
+  position: relative;
+  display: inline-block;
 }
 
-.contacts .single .counter .add-like img {
-  width: 45px;
-  height: 45px;
+.contacts .single .counter .add-like {
+  display: block;
+  padding-right: 0px;
+  padding-left: 0px;
+  width: 100%;
+}
+
+.contacts .single .counter .add-like #text {
+  color: red;
+}
+
+.contacts .single .counter img {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  right: 12px;
+  top: 5px;
 }
 
 .contacts .single .counter .total-likes {
   font-style: italic;
+}
+
+.contacts .add-like span {
+  user-select: none
 }

@@ -177,12 +177,14 @@ class ProjectItem extends React.Component {
 }
 
 class ContactItem extends React.Component {
-  
+
   constructor(props) {
     super(props);
-    this.state = {counter: this.props.likes};
+    this.state = {
+      counter: this.props.likes
+    };
   }
-  
+
   render() {
     const {name, tel, email, avatar} = this.props;
     return (
@@ -201,41 +203,47 @@ class ContactItem extends React.Component {
                   {email}
                 </div>
                 <div className="counter">
-                  <div className="add-like" onClick={this.increment.bind(this)}>
-                    <span>Polub! </span><img className="like-btn" src="img/like.jpg"/>
-                  </div>
+                  <button ref="btn" className="add-like" onClick={this.increment.bind(this)}>
+                    Polub!
+                  </button>
+                  <img className="like-btn" src="img/like.jpg"/>
                   <div className="total-likes">
-                  Łącznie <output>{this.state.counter}</output> polubień
+                    Łącznie <output>{this.state.counter}</output> polubień
                   </div>
                 </div>
               </div>
             </div>
-            );
+                      );
+            }
+
+    contactOnClickHandler() {
+      //alert('Kliknięto!');
+    }
+
+    increment() {
+      var likes = parseInt(this.state.counter);
+      if (!(this.refs.btn.setAttribute("disabled", "disabled"))) {
+        this.setState({
+          counter: likes + 1
+        });
+      }
+      this.refs.btn.setAttribute("disabled", "disabled");
+    }
+
   }
 
-  contactOnClickHandler() {
-    //alert('Kliknięto!');
-  }
-  
-  increment() {
-    var likes = parseInt(this.state.counter);
-    this.setState({
-      counter: likes + 1
-    })
+
+  class OptionsItem extends React.Component {
+    render() {
+      const {title} = this.props;
+      return (
+              <div className="single">
+                {title}
+              </div>
+              );
+    }
   }
 
-}
 
-class OptionsItem extends React.Component {
-  render() {
-    const {title} = this.props;
-    return (
-            <div className="single">
-              {title}
-            </div>
-            );
-  }
-}
-
-ReactDOM.render(<App />,
-        $("#address-book").get(0));
+  ReactDOM.render(<App />,
+          $("#address-book").get(0));
