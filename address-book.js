@@ -29,8 +29,18 @@ function AppHeader() {
 }
 
 function ContactsList() {
-  return(
+  return (
           <div className="row">
+            <PersonalInfo 
+              title="Marek zwierzycki"
+              tel="555 555 555"
+              email="mzwierzycki@example.com"
+              city="Gdańsk"
+              postal="80-010"
+              street="ul. Kościuszki"
+              />
+            <PersonalProjects
+              />
             <ContactItem 
               name="Monika Pietrzałek"
               tel="111 111 111"
@@ -65,6 +75,55 @@ function ContactsList() {
           );
 }
 
+function PersonalInfo() {
+  return (
+          <div className="col-md-6">
+            <div className="personal-info">
+              <div className="avatar">
+          
+              </div>
+              <div className="title">
+                Monika pietrzałek
+              </div>
+              <div className="tel">
+                612 612 612
+              </div>
+              <div className="email">
+                mpietrzalek@example.com
+              </div>
+              <div className="City">
+                Warsaw
+              </div>
+              <div className="Postal">
+                00-030
+              </div>
+              <div className="Street">
+                ul. Kopernika
+              </div>
+            </div>
+          </div>
+          );
+}
+
+function PersonalProjects() {
+  return (
+          <div class="col-md-6">
+            <div class="personal-projects">
+              <ProjectItem 
+                title="google.com"
+                frontend=""
+                backend=""
+                />
+              <ProjectItem 
+                title="wp.pl"
+                frontend=""
+                backend=""
+                />
+            </div>
+          </div>
+          );
+}
+
 function HeaderOptions() {
   return (
           <div className="options">
@@ -79,6 +138,20 @@ function HeaderOptions() {
               />
           </div>
           )
+}
+
+class ProjectItem extends React.Component {
+
+  render() {
+    const {title, frontend, backend} = this.props;
+    return (
+            <div class="project">
+              <span class="title">{title}</span>
+              <span class="frontend-icon">FRONT-END</span>
+              <span class="backend-icon">BACKEND-END</span>
+            </div>
+            );
+  }
 }
 
 class ContactItem extends React.Component {
