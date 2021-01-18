@@ -94,3 +94,20 @@ body {
 .contacts .personal-projects .project .frontend-icon {
   background-color: #66CD00;
 }
+
+.contacts .single .counter:hover {
+   cursor: pointer;
+}
+
+.contacts .single .counter .add-like span {
+  vertical-align: middle;
+}
+
+.contacts .single .counter .add-like img {
+  width: 45px;
+  height: 45px;
+}
+
+.contacts .single .counter .total-likes {
+  font-style: italic;
+}

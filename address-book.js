@@ -45,31 +45,37 @@ function ContactsList() {
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
+              avatar="img/avatar.webp"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
+              avatar="img/avatar.webp"
               />
             <ContactItem 
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
+              avatar="img/avatar.webp"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
+              avatar="img/avatar.webp"
               />
             <ContactItem 
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
+              avatar="img/avatar.webp"
               />
             <ContactItem 
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
+              avatar="img/avatar.webp"
               />
           </div>
           );
@@ -165,15 +171,16 @@ class ProjectItem extends React.Component {
 
 class ContactItem extends React.Component {
   render() {
-    const {name, tel, email} = this.props;
+    const {name, tel, email, avatar} = this.props;
     return (
             <div className="col-md-3">
               <div className="single" onClick={this.contactOnClickHandler}>
-                <div className="avatar">
+                <div className="avatar" style={{backgroundImage: "url(" + avatar + ")"}}>
             
                 </div>
                 <div className="title">
                   {name}
+                  {avatar}
                 </div>
                 <div className="tel">
                   {tel}
@@ -181,13 +188,21 @@ class ContactItem extends React.Component {
                 <div className="email">
                   {email}
                 </div>
+                <div className="counter">
+                  <div className="add-like">
+                    <span>Polub! </span><img className="like-btn" src="img/like.jpg"/>
+                  </div>
+                  <div className="total-likes">
+                    Łącznie 0 polubień
+                  </div>
+                </div>
               </div>
             </div>
             );
   }
 
   contactOnClickHandler() {
-    alert('Kliknięto!');
+    //alert('Kliknięto!');
   }
 }
 
