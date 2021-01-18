@@ -107,8 +107,8 @@ function PersonalInfo() {
 
 function PersonalProjects() {
   return (
-          <div class="col-md-6">
-            <div class="personal-projects">
+          <div className="col-md-6">
+            <div className="personal-projects">
               <ProjectItem 
                 title="google.com"
                 frontend="1"
@@ -150,13 +150,13 @@ class ProjectItem extends React.Component {
   render() {
     const {title, frontend, backend} = this.props;
     return (
-            <div class="project">
-              <span class="title">{title}</span>
+            <div className="project">
+              <span className="title">{title}</span>
               {frontend == 1 &&
-                          <span class="frontend-icon">FRONT-END</span>
+                          <span className="frontend-icon">FRONT-END</span>
               }
               {backend == 1 &&
-                          <span class="backend-icon">BACKEND-END</span>
+                          <span className="backend-icon">BACKEND-END</span>
               }
             </div>
             );
@@ -168,7 +168,7 @@ class ContactItem extends React.Component {
     const {name, tel, email} = this.props;
     return (
             <div className="col-md-3">
-              <div className="single" onClick={() => alert('click!')}>
+              <div className="single" onClick={this.contactOnClickHandler}>
                 <div className="avatar">
             
                 </div>
@@ -184,6 +184,10 @@ class ContactItem extends React.Component {
               </div>
             </div>
             );
+  }
+
+  contactOnClickHandler() {
+    alert('Kliknięto!');
   }
 }
 
