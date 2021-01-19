@@ -31,7 +31,7 @@ function AppHeader() {
 function ContactsList() {
   return (
           <div className="row">
-            <PersonalInfo 
+            <PersonalInfo
               title="Marek zwierzycki"
               tel="555 555 555"
               email="mzwierzycki@example.com"
@@ -42,42 +42,42 @@ function ContactsList() {
               />
             <PersonalProjects
               />
-            <ContactItem 
+            <ContactItem
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
               likes="2"
               />
-            <ContactItem 
+            <ContactItem
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
               avatar="img/avatar.webp"
               likes="1"
               />
-            <ContactItem 
+            <ContactItem
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
               likes="44"
               />
-            <ContactItem 
+            <ContactItem
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
               avatar="img/avatar.webp"
               likes="453"
               />
-            <ContactItem 
+            <ContactItem
               name="Monika Pietrzałek"
               tel="111 111 111"
               email="mpietrzalek@example.com"
               avatar="img/avatar.webp"
               likes="0"
               />
-            <ContactItem 
+            <ContactItem
               name="Magda Osnowska"
               tel="22 222 222"
               email="mosnowska@example.com"
@@ -88,51 +88,56 @@ function ContactsList() {
           );
 }
 
-function PersonalInfo() {
-  return (
-          <div className="col-md-6">
-            <div className="personal-info">
-              <div className="avatar">
-          
-              </div>
-              <div className="title">
-                Monika pietrzałek
-              </div>
-              <div className="tel">
-                612 612 612
-              </div>
-              <div className="email">
-                mpietrzalek@example.com
-              </div>
-              <div className="City">
-                Warsaw
-              </div>
-              <div className="Postal">
-                00-030
-              </div>
-              <div className="Street">
-                ul. Kopernika
+class PersonalInfo extends React.Component {
+
+  render() {
+    const {title, tel, email, city, postal, street} = this.props;
+    return (
+            <div className="col-md-6">
+              <div className="personal-info">
+            
+                <div className="avatar">
+            
+                </div>
+                <div className="title">
+                  {title}
+                </div>
+                <div className="tel">
+                  {tel}
+                </div>
+                <div className="email">
+                  {email}
+                </div>
+                <div className="city">
+                  {city}
+                </div>
+                <div className="postal">
+                  {postal}
+                </div>
+                <div className="street">
+                  {street}
+                </div>
               </div>
             </div>
-          </div>
-          );
+            )
+  }
 }
 
 function PersonalProjects() {
   return (
           <div className="col-md-6">
             <div className="personal-projects">
-              <ProjectItem 
+              <ProjectItem
                 title="google.com"
                 frontend="1"
                 backend="0"
                 />
-              <ProjectItem 
+              <ProjectItem
                 title="wp.pl"
                 frontend="0"
                 backend="1"
                 />
-              <ProjectItem 
+              <ProjectItem
                 title="hypeup.org"
                 frontend="1"
                 backend="1"
@@ -145,13 +150,13 @@ function PersonalProjects() {
 function HeaderOptions() {
   return (
           <div className="options">
-            <OptionsItem 
+            <OptionsItem
               title="Dodaj"
               />
-            <OptionsItem 
+            <OptionsItem
               title="Opcja 2"
               />
-            <OptionsItem 
+            <OptionsItem
               title="Opcja 3"
               />
           </div>
