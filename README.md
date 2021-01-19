@@ -1,2 +1,2 @@
 # ksiazka-adresowa-react
-Książka adresowa osadzona na backendzie oraz frontcie z wykorzystaniem React.
+Prosty projekt książki adresowej z wykorzystaniem React - podstawy bez użycia npm.
