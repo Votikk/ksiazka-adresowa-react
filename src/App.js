@@ -1,3 +1,11 @@
+import logo from './logo.svg';
+import './App.css';
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 function App() {
   return (
           <div>
@@ -192,6 +200,7 @@ class ContactItem extends React.Component {
 
   render() {
     const {name, tel, email, avatar} = this.props;
+//    const btn = useRef(null);
     return (
             <div className="col-md-3">
               <div className="single" onClick={this.contactOnClickHandler}>
@@ -208,7 +217,7 @@ class ContactItem extends React.Component {
                   {email}
                 </div>
                 <div className="counter">
-                  <button ref="btn" className="add-like" onClick={this.increment.bind(this)}>
+                  <button className="add-like" onClick={this.increment.bind(this)}>
                     Polub!
                   </button>
                   <img className="like-btn" src="img/like.jpg"/>
@@ -226,13 +235,13 @@ class ContactItem extends React.Component {
     }
 
     increment() {
-      var likes = parseInt(this.state.counter);
-      if (!(this.refs.btn.setAttribute("disabled", "disabled"))) {
-        this.setState({
-          counter: likes + 1
-        });
-      }
-      this.refs.btn.setAttribute("disabled", "disabled");
+//      var likes = parseInt(this.state.counter);
+//      if (!(this.refs.btn.setAttribute("disabled", "disabled"))) {
+//        this.setState({
+//          counter: likes + 1
+//        });
+//      }
+//      this.refs.btn.setAttribute("disabled", "disabled");
     }
 
   }
@@ -250,5 +259,5 @@ class ContactItem extends React.Component {
   }
 
 
-  ReactDOM.render(<App />,
-          $("#address-book").get(0));
+
+  export default App;
