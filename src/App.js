@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import like from './like.jpg';
 import './App.css';
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 
 function App() {
   return (
@@ -219,7 +220,7 @@ class ContactItem extends React.Component {
                   <button className="add-like" onClick={this.increment.bind(this)}>
                     Polub!
                   </button>
-                  <img className="like-btn" src="img/like.jpg"/>
+                  <img className="like-btn" src={like}/>
                   <div className="total-likes">
                     Łącznie <output>{this.state.counter}</output> polubień
                   </div>
