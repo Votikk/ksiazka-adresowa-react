@@ -200,7 +200,6 @@ class ContactItem extends React.Component {
 
   render() {
     const {name, tel, email, avatar} = this.props;
-//    const btn = useRef(null);
     return (
             <div className="col-md-3">
               <div className="single" onClick={this.contactOnClickHandler}>
@@ -235,17 +234,11 @@ class ContactItem extends React.Component {
     }
 
     increment() {
-//      var likes = parseInt(this.state.counter);
-//      if (!(this.refs.btn.setAttribute("disabled", "disabled"))) {
-//        this.setState({
-//          counter: likes + 1
-//        });
-//      }
-//      this.refs.btn.setAttribute("disabled", "disabled");
+      var counterInt = parseInt(this.state.counter);
+      this.setState({counter: counterInt + 1})
     }
 
   }
-
 
   class OptionsItem extends React.Component {
     render() {
