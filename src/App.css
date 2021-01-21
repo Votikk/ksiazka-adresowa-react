@@ -124,6 +124,10 @@ body {
   top: 5px;
 }
 
+.contacts .single .avatar, .contacts .single .title {
+  cursor: pointer;
+}
+
 .contacts .single .counter .total-likes {
   font-style: italic;
 }

@@ -37,123 +37,165 @@ function AppHeader() {
           );
 }
 
-function ContactsList() {
-  return (
-          <div className="row">
-            <PersonalInfo
-              title="Marek zwierzycki"
-              tel="555 555 555"
-              email="mzwierzycki@example.com"
-              city="Gdańsk"
-              postal="80-010"
-              street="ul. Kościuszki"
-              likes="1"
-              />
-            <PersonalProjects
-              />
-            <ContactItem
-              name="Monika Pietrzałek"
-              tel="111 111 111"
-              email="mpietrzalek@example.com"
-              avatar="img/avatar.webp"
-              likes="2"
-              />
-            <ContactItem
-              name="Magda Osnowska"
-              tel="22 222 222"
-              email="mosnowska@example.com"
-              avatar="img/avatar.webp"
-              likes="1"
-              />
-            <ContactItem
-              name="Monika Pietrzałek"
-              tel="111 111 111"
-              email="mpietrzalek@example.com"
-              avatar="img/avatar.webp"
-              likes="44"
-              />
-            <ContactItem
-              name="Magda Osnowska"
-              tel="22 222 222"
-              email="mosnowska@example.com"
-              avatar="img/avatar.webp"
-              likes="453"
-              />
-            <ContactItem
-              name="Monika Pietrzałek"
-              tel="111 111 111"
-              email="mpietrzalek@example.com"
-              avatar="img/avatar.webp"
-              likes="0"
-              />
-            <ContactItem
-              name="Magda Osnowska"
-              tel="22 222 222"
-              email="mosnowska@example.com"
-              avatar="img/avatar.webp"
-              likes="88"
-              />
-          </div>
-          );
+class ContactsList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDisplayed: false
+    };
+    
+    this.toggleShowHide = this.toggleShowHide.bind(this);
+  }
+
+  toggleShowHide() {
+    this.setState(() => {
+      return {
+        // isDisplayed: !prevState.isDisplayed
+        isDisplayed: true
+      } 
+    });
+  }
+
+  render() {
+    const {title, tel, email, city, postal, street} = this.props;
+    return (
+            <div className="row">
+              <PersonalInfo
+                title="Marek zwierzycki"
+                tel="555 555 555"
+                email="mzwierzycki@example.com"
+                city="Gdańsk"
+                postal="80-010"
+                street="ul. Kościuszki"
+                likes="1"
+                isDisplayed={this.state.isDisplayed}
+                />
+              <PersonalProjects
+                isDisplayed={this.state.isDisplayed}
+                />
+              <ContactItem
+                name="Monika Pietrzałek"
+                tel="111 111 111"
+                email="mpietrzalek@example.com"
+                avatar="img/avatar.webp"
+                likes="2"
+                actionName={this.toggleShowHide}
+                />
+              <ContactItem
+                name="Magda Osnowska"
+                tel="22 222 222"
+                email="mosnowska@example.com"
+                avatar="img/avatar.webp"
+                likes="1"
+                actionName={this.toggleShowHide}
+                />
+              <ContactItem
+                name="Monika Pietrzałek"
+                tel="111 111 111"
+                email="mpietrzalek@example.com"
+                avatar="img/avatar.webp"
+                likes="44"
+                actionName={this.toggleShowHide}
+                />
+              <ContactItem
+                name="Magda Osnowska"
+                tel="22 222 222"
+                email="mosnowska@example.com"
+                avatar="img/avatar.webp"
+                likes="453"
+                actionName={this.toggleShowHide}
+                />
+              <ContactItem
+                name="Monika Pietrzałek"
+                tel="111 111 111"
+                email="mpietrzalek@example.com"
+                avatar="img/avatar.webp"
+                likes="0"
+                actionName={this.toggleShowHide}
+                />
+              <ContactItem
+                name="Magda Osnowska"
+                tel="22 222 222"
+                email="mosnowska@example.com"
+                avatar="img/avatar.webp"
+                likes="88"
+                actionName={this.toggleShowHide}
+                />
+            </div>
+            )
+
+  }
+  ;
 }
 
 class PersonalInfo extends React.Component {
 
   render() {
-    const {title, tel, email, city, postal, street} = this.props;
-    return (
-            <div className="col-md-6">
-              <div className="personal-info">
-            
-                <div className="avatar">
-            
-                </div>
-                <div className="title">
-                  {title}
-                </div>
-                <div className="tel">
-                  {tel}
-                </div>
-                <div className="email">
-                  {email}
-                </div>
-                <div className="city">
-                  {city}
-                </div>
-                <div className="postal">
-                  {postal}
-                </div>
-                <div className="street">
-                  {street}
+    const {title, tel, email, city, postal, street, isDisplayed} = this.props;
+    if (isDisplayed) {
+      return (
+              <div className="col-md-6">
+                <div className="personal-info">
+              
+                  <div className="avatar">
+              
+                  </div>
+                  <div className="title">
+                    {title}
+                  </div>
+                  <div className="tel">
+                    {tel}
+                  </div>
+                  <div className="email">
+                    {email}
+                  </div>
+                  <div className="city">
+                    {city}
+                  </div>
+                  <div className="postal">
+                    {postal}
+                  </div>
+                  <div className="street">
+                    {street}
+                  </div>
                 </div>
               </div>
-            </div>
-            )
+              )
+    }
+    return (null)
   }
 }
 
-function PersonalProjects() {
-  return (
-          <div className="col-md-6">
-            <div className="personal-projects">
-              <ProjectItem
-                title="google.com"
-                frontend="1"
-                backend="0"
-                />
-              <ProjectItem
-                title="wp.pl"
-                frontend="0"
-                backend="1"
-                />
-              <ProjectItem
-                title="hypeup.org"
-                frontend="1"
-                backend="1"
-                />
-            </div>
-          </div>
-          );
+class PersonalProjects extends React.Component {
+
+  render() {
+    const {isDisplayed} = this.props;
+    if (isDisplayed) {
+      return (
+              <div className="col-md-6">
+                <div className="personal-projects">
+                  <ProjectItem
+                    title="google.com"
+                    frontend="1"
+                    backend="0"
+                    />
+                  <ProjectItem
+                    title="wp.pl"
+                    frontend="0"
+                    backend="1"
+                    />
+                  <ProjectItem
+                    title="hypeup.org"
+                    frontend="1"
+                    backend="1"
+                    />
+                </div>
+              </div>
+              )
+    }
+    return (null)
+  }
 }
 
 function HeaderOptions() {
@@ -203,12 +245,14 @@ class ContactItem extends React.Component {
     const {name, tel, email, avatar} = this.props;
     return (
             <div className="col-md-3">
-              <div className="single" onClick={this.contactOnClickHandler}>
-                <div className="avatar" style={{backgroundImage: "url(" + avatar + ")"}}>
+              <div className="single">
+                <div className="main-info" onClick={this.props.actionName}>
+                  <div className="avatar" style={{backgroundImage: "url(" + avatar + ")"}}>
             
-                </div>
-                <div className="title">
-                  {name}
+                  </div>
+                  <div className="title">
+                    {name}
+                  </div>
                 </div>
                 <div className="tel">
                   {tel}
@@ -227,11 +271,10 @@ class ContactItem extends React.Component {
                 </div>
               </div>
             </div>
-                      );
-            }
+              );
+    }
 
     contactOnClickHandler() {
-      //alert('Kliknięto!');
     }
 
     increment() {
@@ -251,7 +294,5 @@ class ContactItem extends React.Component {
               );
     }
   }
-
-
 
   export default App;
