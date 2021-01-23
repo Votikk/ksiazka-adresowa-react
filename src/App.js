@@ -5,15 +5,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-function App() {
-  return (
-          <div>
-            <AppHeader />
-            <div className="container contacts">
-              <ContactsList />
+
+export class App extends React.Component {
+
+
+
+  state = {
+    contacts: []
+  };
+
+  render() {
+    return (
+            <div>
+              <AppHeader />
+              <div className="container contacts">
+                {this.state.contacts ? <ContactsList contacts={this.state.contacts} /> : 'Ładowanie…'} 
+              </div>
             </div>
-          </div>
-          );
+            )
+  }
+
+  componentDidMount() {
+    fetch("https://swapi.dev/api/people/")
+            .then(res => res.json())
+            .then(json => this.setState({contacts: json.results}));
+  }
+
 }
 
 function AppHeader() {
@@ -61,7 +78,17 @@ class ContactsList extends React.Component {
   }
 
   render() {
+    const {contacts} = this.props;
+
+      console.log(contacts[0]);
+      const obj = JSON.parse(contacts[0]);
+
+
+
+    
+
     return (
+          
             <div className="row">
               {this.state.isDisplayed == true &&
                           <PersonalInfo
