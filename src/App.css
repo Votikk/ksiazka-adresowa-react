@@ -1,5 +1,5 @@
-body {
-  background-color: #f5f5f5;
+#address-book {
+  background-color: #000000;
 }
 
 /* sekcja nawigacji */
@@ -7,7 +7,7 @@ body {
 .navigation .col-md-6 {
   margin-top: 50px;
   margin-bottom: 30px;
-  background-color: #c6c6c6;
+  background-color: #64696C;
   padding: 10px 15px;
 }
 
@@ -16,14 +16,23 @@ body {
 }
 
 .navigation .title {
-  padding: 10px 0px;
+  color: #FFE300;
+  font-size: 32px;
+  background-color: #a7acae;
+  padding: 0px 15px;
 }
 
 .navigation .options .single {
   display: inline-block;
   padding: 10px 30px;
   border-radius: 10px;
-  background-color: #bababa;
+  background-color: #556567;
+  color: #ffffff;
+}
+
+.navigation .options .single.active {
+  background-color: #adadad;
+  color: black;
 }
 
 .navigation .options .single:not(:last-child) {
@@ -33,9 +42,15 @@ body {
 .navigation .options .single:hover {
   background-color: #adadad;
   cursor: pointer;
+  color: black;
 }
 
 /* sekcja kontaktów */
+
+.loading-info {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
 
 .contacts .avatar {
   background-color: red;
@@ -48,26 +63,47 @@ body {
 
 .contacts .single {
   margin-bottom: 50px;
+  color: #FFFFFF;
 }
 
 .contacts .single .title {
   font-weight: 800;
-  word-break: break-all;
+  color: #BC1E22;
 }
 
 .contacts .single .tel {
-  word-break: break-all;
+  
 }
 
 .contacts .single .email {
-  word-break: break-all;
   margin-bottom: 10px;
 }
 
+.contacts .personal-info {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: #a7acae;
+  padding: 10px;
+  color: #0000000;
+}
 
+.contacts .personal-info .title {
+  font-size: 25px;
+  font-weight: 700;
+}
 
-.contacts .personal-info, .contacts .personal-projects {
-  margin-bottom: 30px;
+.contacts .personal-projects { 
+  margin-top: 20px;
+}
+
+.contacts .personal-info-container {
+  background-color: #64696C;
+  margin-bottom: 60px;
+}
+
+.contacts .personal-projects-container {
+  margin-bottom: 60px;
+  background-color: #64696C;
 }
 
 .contacts .personal-projects .project {
@@ -77,23 +113,28 @@ body {
 
 .contacts .personal-projects .project .title {
   min-width: 200px;
+  margin-bottom: 10px;
   font-weight: 800;
-  display: inline-block;
+  color: white;
 }
 
-.contacts .personal-projects .project .backend-icon,
-.contacts .personal-projects .project .frontend-icon {
+.contacts .personal-projects .project .ship-icon,
+.contacts .personal-projects .project .vehicle-icon {
   padding: 2px 10px;
   border-radius: 5px;
   margin-right: 10px;
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  
 }
 
-.contacts .personal-projects .project .backend-icon {
+.contacts .personal-projects .project .ship-icon {
   background-color: #008B8B;
 }
 
-.contacts .personal-projects .project .frontend-icon {
-  background-color: #66CD00;
+.contacts .personal-projects .project .vehicle-icon {
+  background-color: #556567;
 }
 
 .contacts .single .counter:hover {

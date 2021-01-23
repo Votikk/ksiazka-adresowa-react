@@ -18,13 +18,13 @@ export class App extends React.Component {
               <AppHeader />
               <div className="container contacts">
                 {this.state.contacts ? (
-                        <ContactsList contacts={this.state.contacts} />
-                ) : (
-                  'Ładowanie...'
-                )}
+                                  <ContactsList contacts={this.state.contacts} />
+                                  ) : (
+                          <LoadingInfo />
+                          )}
               </div>
             </div>
-   )         
+            )
   }
 
   componentDidMount() {
@@ -35,13 +35,19 @@ export class App extends React.Component {
 
 }
 
+function LoadingInfo() {
+  return(
+          <span className="loading-info">Przygotowuję skok neuronowy...</span>
+          )
+}
+
 function AppHeader() {
   return (
           <div className="container navigation">
             <div className="row">
               <div className="col-md-6">
                 <div className="title">
-                  Książka adresowa
+                  StarWarsBook
                 </div>
               </div>
               <div className="col-md-6">
@@ -74,7 +80,8 @@ class ContactsList extends React.Component {
         city: city,
         postal: postal,
         street: street,
-        likes: likes
+        likes: likes,
+        avatar: "url(img/avatar.webp)"
       }
     });
   }
@@ -82,10 +89,9 @@ class ContactsList extends React.Component {
   render() {
     const {contacts} = this.props;
 
-      console.log(contacts[0]['name']);
-    
+    console.log(contacts[0]['name']);
+
     return (
-          
             <div className="row">
               {this.state.isDisplayed == true &&
                           <PersonalInfo
@@ -95,188 +101,163 @@ class ContactsList extends React.Component {
                             city={this.state.city}
                             postal={this.state.postal}
                             street={this.state.street}
-                            likes={this.state.likes}
+                            avatar={this.state.avatar}
                             />
               }
               <PersonalProjects
                 isDisplayed={this.state.isDisplayed}
                 />
             
-              <div className="col-md-3">
-                <div className="single">
-                  <div className="main-info" onClick={() => this.showPersonalInfo("Magda Zwierzyniak", "111 111 1111", "mzwierzyniak@example.com", "Kraków", "84-230", "ul. Kościuszki", 24)}>
-                    <div className="avatar" style={{backgroundImage: "url(img/avatar.webp)"}}>
-            
-                    </div>
-                    <div className="title">
-                      Magda Zwierzyniak
-                    </div>
-                  </div>
-                  <div className="tel">
-                    111 111 1111
-                  </div>
-                  <div className="email">
-                    mzwierzyniak@example.com
-                  </div>
-                  <div className="counter">
-                    <button className="add-like" onClick={this.increment.bind(this)}>
-                      Polub!
-                    </button>
-                    <img className="like-btn" src={like}/>
-                    <div className="total-likes">
-                      Łącznie <output id="likes-counter-2">24</output> polubień
-                    </div>
-                  </div>
+              {this.props.contacts.map((contact, counter) => (
+                            <div className="col-md-3" key={counter}>
+                              <div className="single">
+                                <div className="main-info" 
+                                     onClick={() => this.showPersonalInfo(
+                                        contact.name,
+                                        'płeć ' + contact.gender,
+                                        'urodzony ' + contact.birth_year,
+                                        'oczy ' + contact.eye_color + ', włosy ' + contact.hair_color,
+                                        'pochodzenie ' + contact.homeworld,
+                                        'Wysokość ' + contact.height + 'cm, masa ' + contact.mass + 'kg', 24
+                                        )}>
+                                  <div className="title">
+                                    {contact.name}
+                                  </div>
+                                </div>
+                                <div className="tel">
+                                  płeć {contact.gender}
+                                </div>
+                                <div className="email">
+                                  Born {contact.birth_year}<br/>włosy {contact.hair_color}<br/>oczy {contact.eye_color}
+                                </div>
+                                <div className="counter">
+                                  <button className="add-like" onClick={this.increment.bind(this)}>
+                                    Wyróżnij
+                                  </button>
+                                  <div className="total-likes">
+                                    Skazany na śmierć w 
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+            </div>
+            )
+  }
+  increment() {
+    console.log('todo increment');
+  }
+  ;
+}
+
+class PersonalInfo extends React.Component {
+
+  render() {
+    const {title, tel, email, city, postal, street, isDisplayed} = this.props;
+    return (
+            <div className="col-md-6 personal-info-container">
+              <div className="personal-info">
+                <div className="title">
+                  {title}
                 </div>
-              </div>
-              <div className="col-md-3">
-                <div className="single">
-                  <div className="main-info" onClick={() => this.showPersonalInfo("Paweł Kielec", "222 222 2222", "pkielec@example.com", "Warszawa", "43-422", "ul. Abrahama", 50)}>
-                    <div className="avatar" style={{backgroundImage: "url(img/avatar.webp)"}}>
-            
-                    </div>
-                    <div className="title">
-                      Paweł Kielec
-                    </div>
-                  </div>
-                  <div className="tel">
-                    222 222 2222
-                  </div>
-                  <div className="email">
-                    pkielec@example.com
-                  </div>
-                  <div className="counter">
-                    <button className="add-like" onClick={this.increment.bind(this)}>
-                      Polub!
-                    </button>
-                    <img className="like-btn" src={like}/>
-                    <div className="total-likes">
-                      Łącznie <output id="likes-counter-1">50</output> polubień
-                    </div>
-                  </div>
+                <div className="tel">
+                  {tel}
+                </div>
+                <div className="email">
+                  {email}
+                </div>
+                <div className="city">
+                  {city}
+                </div>
+                <div className="postal">
+                  {postal}
+                </div>
+                <div className="street">
+                  {street}
                 </div>
               </div>
             </div>
-                )
-      }
-      increment() {
-        var counterValue = document.getElementById("likes-counter-1").textContent;
-        var counter = document.getElementById("likes-counter-1");
-        counterValue = parseInt(counterValue) + 1;
-        counter.innerHTML = counterValue;
-      }
-      ;
-    }
+            )
+  }
+}
 
-    class PersonalInfo extends React.Component {
+class PersonalProjects extends React.Component {
 
-      render() {
-        const {title, tel, email, city, postal, street, isDisplayed} = this.props;
-        return (
-                <div className="col-md-6">
-                  <div className="personal-info">
-                
-                    <div className="avatar">
-                
-                    </div>
-                    <div className="title">
-                      {title}
-                    </div>
-                    <div className="tel">
-                      {tel}
-                    </div>
-                    <div className="email">
-                      {email}
-                    </div>
-                    <div className="city">
-                      {city}
-                    </div>
-                    <div className="postal">
-                      {postal}
-                    </div>
-                    <div className="street">
-                      {street}
-                    </div>
-                  </div>
-                </div>
-                )
-      }
-    }
-
-    class PersonalProjects extends React.Component {
-
-      render() {
-        const {isDisplayed} = this.props;
-        if (isDisplayed) {
-          return (
-                  <div className="col-md-6">
-                    <div className="personal-projects">
-                      <ProjectItem
-                        title="google.com"
-                        frontend="1"
-                        backend="0"
-                        />
-                      <ProjectItem
-                        title="wp.pl"
-                        frontend="0"
-                        backend="1"
-                        />
-                      <ProjectItem
-                        title="hypeup.org"
-                        frontend="1"
-                        backend="1"
-                        />
-                    </div>
-                  </div>
-                  )
-        }
-        return (null)
-      }
-    }
-
-    function HeaderOptions() {
+  render() {
+    const {isDisplayed} = this.props;
+    if (isDisplayed) {
       return (
-              <div className="options">
-                <OptionsItem
-                  title="Postacie"
-                  />
-                <OptionsItem
-                  title="Planety"
-                  />
-                <OptionsItem
-                  title="Statki"
-                  />
+              <div className="col-md-6 personal-projects-container">
+                <div className="personal-projects">
+                  <ProjectItem
+                    title="Własność"
+                    owned="test"
+                    />
+                </div>
               </div>
               )
     }
+    return (null)
+  }
+}
 
-    class ProjectItem extends React.Component {
+function HeaderOptions() {
+  return (
+          <div className="options">
+            <OptionsItem
+              title="Postacie"
+              active="active"
+              />
+            <OptionsItem
+              title="Planety"
+              active=""
+              />
+            <OptionsItem
+              title="Statki"
+              active=""
+              />
+          </div>
+          )
+}
 
-      render() {
-        const {title, frontend, backend} = this.props;
-        return (
-                <div className="project">
-                  <span className="title">{title}</span>
-                  {frontend == 1 &&
-                                  <span className="frontend-icon">FRONT-END</span>
-                  }
-                  {backend == 1 &&
-                                  <span className="backend-icon">BACKEND-END</span>
-                  }
-                </div>
-                );
-      }
+class ProjectItem extends React.Component {
+
+  render() {
+    const {title, owned} = this.props;
+    return (
+            <div className="project">
+              <div className="title">{title}</div>
+              {owned !== "" &&
+                          <div>
+                            <span className="vehicle-icon">Sand Crawler</span>
+                            <span className="vehicle-icon">T-16 skyhopper</span>
+                            <span className="vehicle-icon">X-34 landspeeder</span>
+                            <span className="vehicle-icon">AT-AT</span>
+                          </div>
+              }
+            </div>
+            );
+  }
+}
+
+class OptionsItem extends React.Component {
+  render() {
+    const {title, active} = this.props;
+    if (active == "active") {
+      return (
+              <div className="single active">
+                {title}
+              </div>
+              );
+    } else {
+      return (
+              <div className="single">
+                {title}
+              </div>
+              );
     }
 
-    class OptionsItem extends React.Component {
-      render() {
-        const {title} = this.props;
-        return (
-                <div className="single">
-                  {title}
-                </div>
-                );
-      }
-    }
+  }
+}
 
-    export default App;
+export default App;
