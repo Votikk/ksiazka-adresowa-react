@@ -8,10 +8,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export class App extends React.Component {
 
-
-
   state = {
-    contacts: []
+    contacts: null
   };
 
   render() {
@@ -19,10 +17,14 @@ export class App extends React.Component {
             <div>
               <AppHeader />
               <div className="container contacts">
-                {this.state.contacts ? <ContactsList contacts={this.state.contacts} /> : 'Ładowanie…'} 
+                {this.state.contacts ? (
+                        <ContactsList contacts={this.state.contacts} />
+                ) : (
+                  'Ładowanie...'
+                )}
               </div>
             </div>
-            )
+   )         
   }
 
   componentDidMount() {
@@ -80,13 +82,8 @@ class ContactsList extends React.Component {
   render() {
     const {contacts} = this.props;
 
-      console.log(contacts[0]);
-      const obj = JSON.parse(contacts[0]);
-
-
-
+      console.log(contacts[0]['name']);
     
-
     return (
           
             <div className="row">
