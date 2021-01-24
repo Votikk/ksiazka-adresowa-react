@@ -9,16 +9,21 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 export class App extends React.Component {
 
   state = {
-    contacts: null
+    searchResult: null
   };
 
   render() {
     return (
             <div>
-              <AppHeader />
+              <AppHeader 
+                passedGetPeople={this.getPeople}
+                passedGetVehicles={this.getVehicles}
+                passedGetShips={this.getShips}
+                passedGetSearchResult={this.getSearchResult}
+                />
               <div className="container contacts">
-                {this.state.contacts ? (
-                                  <ContactsList contacts={this.state.contacts} />
+                {this.state.searchResult ? (
+                                  <ContactsList searchResult={this.state.searchResult} />
                                   ) : (
                           <LoadingInfo />
                           )}
@@ -27,37 +32,94 @@ export class App extends React.Component {
             )
   }
 
-  componentDidMount() {
+  // pobieranie osób
+  getPeople = () => {
     fetch("https://swapi.dev/api/people/")
             .then(res => res.json())
-            .then(json => this.setState({contacts: json.results}));
+            .then(json => this.setState({searchResult: json.results}));
+  }
+
+  // pobieranie pojazdów
+  getVehicles = () => {
+    fetch("https://swapi.dev/api/vehicles/")
+            .then(res => res.json())
+            .then(json => this.setState({searchResult: json.results}));
+  }
+
+  // pobieranie statków
+  getShips = () => {
+    fetch("https://swapi.dev/api/starships/")
+            .then(res => res.json())
+            .then(json => this.setState({searchResult: json.results}));
+  }
+
+  // wyszukiwanie
+  getSearchResult() {
+    fetch("https://swapi.dev/api/starships/")
+            .then(res => res.json())
+            .then(json => this.setState({searchResult: json.results}));
   }
 
 }
 
 function LoadingInfo() {
   return(
-          <span className="loading-info">Przygotowuję skok neuronowy...</span>
+          <span className="loading-info">Wybierz opcję z górnego menu lub wyszukaj...</span>
           )
 }
 
-function AppHeader() {
-  return (
-          <div className="container navigation">
-            <div className="row">
-              <div className="col-md-6">
-                <div className="title">
-                  StarWarsBook
+class AppHeader extends React.Component {
+  render() {
+    return (
+            <div className="container navigation">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="title">
+                    StarWarsBook
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className="single">
-                  <HeaderOptions />
+                <div className="col-md-6">
+                  <div className="single">
+                    <div className="options">
+            
+                      <div className="single active"
+                           onClick={this.props.passedGetPeople}>
+                        Postacie
+                      </div>
+                      <div className="single active"
+                           onClick={this.props.passedGetVehicles}>
+                        Pojazdy
+                      </div>
+                      <div className="single active"
+                           onClick={this.props.passedGetShips}>
+                        Statki
+                      </div>
+            
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="search-bar">
+                    <div className="show-search-bar">
+                      <form>
+                        <input type="text" />
+                        <input type="submit" value="Wyszukaj"/>
+                      </form>
+                    </div>
+                    <div className="searchresults">
+                      <div className="one">Luke Skywalker</div>
+                      <div className="one">Luke Skywalker</div>
+                      <div className="one">Luke Skywalker</div>
+                      <div className="one">Luke Skywalker</div>
+                      <div className="one">Luke Skywalker</div>
+                      <div className="one">Luke Skywalker</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          );
+            );
+  }
 }
 
 class ContactsList extends React.Component {
@@ -87,9 +149,7 @@ class ContactsList extends React.Component {
   }
 
   render() {
-    const {contacts} = this.props;
-
-    console.log(contacts[0]['name']);
+    const {searchResult} = this.props;
 
     return (
             <div className="row">
@@ -108,35 +168,41 @@ class ContactsList extends React.Component {
                 isDisplayed={this.state.isDisplayed}
                 />
             
-              {this.props.contacts.map((contact, counter) => (
+              {this.props.searchResult.map((oneResult, counter) => (
                             <div className="col-md-3" key={counter}>
                               <div className="single">
                                 <div className="main-info" 
                                      onClick={() => this.showPersonalInfo(
-                                        contact.name,
-                                        'płeć ' + contact.gender,
-                                        'urodzony ' + contact.birth_year,
-                                        'oczy ' + contact.eye_color + ', włosy ' + contact.hair_color,
-                                        'pochodzenie ' + contact.homeworld,
-                                        'Wysokość ' + contact.height + 'cm, masa ' + contact.mass + 'kg', 24
+                                        oneResult.name,
+                                        oneResult.gender,
+                                        oneResult.birth_year,
+                                        oneResult.eye_color + ', ' + oneResult.hair_color,
+                                        oneResult.homeworld,
+                                        oneResult.height + ', ' + oneResult.mass, 
+                                        24
                                         )}>
                                   <div className="title">
-                                    {contact.name}
+                                    {oneResult.name}
                                   </div>
                                 </div>
                                 <div className="tel">
-                                  płeć {contact.gender}
+                                  {oneResult.gender}
                                 </div>
                                 <div className="email">
-                                  Born {contact.birth_year}<br/>włosy {contact.hair_color}<br/>oczy {contact.eye_color}
+                                  {oneResult.birth_year}<br/>{oneResult.hair_color}<br/>{oneResult.eye_color}
                                 </div>
-                                <div className="counter">
+                                <div className="counter" onClick={() => this.showPersonalInfo(
+                                        oneResult.name,
+                                        oneResult.gender,
+                                        oneResult.birth_year,
+                                        oneResult.eye_color + ', ' + oneResult.hair_color,
+                                        oneResult.homeworld,
+                                        oneResult.height + ', ' + oneResult.mass, 
+                                        24
+                                        )}>
                                   <button className="add-like" onClick={this.increment.bind(this)}>
-                                    Wyróżnij
+                                    Zobacz
                                   </button>
-                                  <div className="total-likes">
-                                    Skazany na śmierć w 
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -147,7 +213,7 @@ class ContactsList extends React.Component {
   increment() {
     console.log('todo increment');
   }
-  ;
+
 }
 
 class PersonalInfo extends React.Component {
@@ -201,25 +267,6 @@ class PersonalProjects extends React.Component {
   }
 }
 
-function HeaderOptions() {
-  return (
-          <div className="options">
-            <OptionsItem
-              title="Postacie"
-              active="active"
-              />
-            <OptionsItem
-              title="Planety"
-              active=""
-              />
-            <OptionsItem
-              title="Statki"
-              active=""
-              />
-          </div>
-          )
-}
-
 class ProjectItem extends React.Component {
 
   render() {
@@ -237,26 +284,6 @@ class ProjectItem extends React.Component {
               }
             </div>
             );
-  }
-}
-
-class OptionsItem extends React.Component {
-  render() {
-    const {title, active} = this.props;
-    if (active == "active") {
-      return (
-              <div className="single active">
-                {title}
-              </div>
-              );
-    } else {
-      return (
-              <div className="single">
-                {title}
-              </div>
-              );
-    }
-
   }
 }
 

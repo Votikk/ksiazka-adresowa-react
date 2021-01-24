@@ -11,6 +11,12 @@
   padding: 10px 15px;
 }
 
+.navigation .col-md-12 { 
+  margin-bottom: 30px;
+  background-color: #64696C;
+  padding: 10px 15px;
+}
+
 .navigation .col-md-6:first-of-type {
   border-right: 1px solid black;
 }
@@ -43,6 +49,18 @@
   background-color: #adadad;
   cursor: pointer;
   color: black;
+}
+
+/* wyszukiwarka */
+
+.search-bar {
+  background-color: white;
+  background-color: #a7acae;
+  padding: 5px 15px;
+}
+
+.search-bar .show-search-bar {
+  
 }
 
 /* sekcja kontaktów */
@@ -151,6 +169,9 @@
   padding-right: 0px;
   padding-left: 0px;
   width: 100%;
+  padding: 5px 10px;
+  background-color: #000000;
+  color: white;
 }
 
 .contacts .single .counter .add-like #text {
